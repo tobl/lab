@@ -4,6 +4,7 @@ owieApp.factory('Data', function() {
     return {message: "message", date: "testdate", msgId: "messagetestdate"};
 });
 
+
 owieApp.config(function($stateProvider, $urlRouterProvider) {
 
         $stateProvider
@@ -15,15 +16,11 @@ owieApp.config(function($stateProvider, $urlRouterProvider) {
                 controller: 'indexCtrl'
             })
 
-            .state('create', {
-                url: '/create',
+            .state('show', {
+                url: '/show?id',
                 templateUrl: 'show.html',
                 controller: 'showCtrl'
-            })
-            .state('show', {
-                url: '/show',
-                templateUrl: 'show.html'
-            })
+            });
 
         // catch all route
         // send users to the form page
@@ -31,25 +28,25 @@ owieApp.config(function($stateProvider, $urlRouterProvider) {
 });
 
 owieApp.controller('indexCtrl', function($scope, $state, Data) {
-    $scope.data = Data;
     var msgId = Data.message + Data.date;
     Data.msgId = msgId;
+    $scope.data = Data;
+    //$scope.data.msgId = $scope.data.message + $scope.data.date;
+
 
     $scope.processForm = function() {
+        var msgId = Data.message + Data.date;
         alert('awesome: '+msgId);
-        $state.transitionTo('show');
+        $state.go('show', {id: msgId});
     };
-
 });
 
-owieApp.controller('process', function($scope, Data) {
-    alert('works');
-})
-
-owieApp.controller('showCtrl', function($scope, Data) {
-    var msgId = Data.message + Data.date;
-    Data.msgId = msgId;
-    console.log(msgId);
-    $scope.data = Data;
-    //$state.go('show')
+owieApp.controller('showCtrl', function($scope, Data, $state, $stateParams) {
+    msgId = $stateParams.id
+    if (msgId) {
+        Data.msgId = msgId;
+        $scope.data = Data;
+    } else {
+        $state.go('index');
+    }
 });
