@@ -1,55 +1,55 @@
-angular.module('owieApp', ['ngAnimate', 'ui.router'] ).
+var owieApp = angular.module('owieApp', ['ui.router'] )
 
-    config(function($stateProvider, $urlRouterProvider) {
+owieApp.factory('Data', function() {
+    return {message: "message", date: "testdate", msgId: "messagetestdate"};
+});
+
+owieApp.config(function($stateProvider, $urlRouterProvider) {
 
         $stateProvider
 
             // route to show our basic form (/form)
-            .state('form', {
-                url: '/form',
+            .state('index', {
+                url: '/index',
                 templateUrl: 'form.html',
-                controller: 'formController'
+                controller: 'indexCtrl'
             })
 
-            // nested states
-            // each of these sections will have their own view
-            // url will be nested (/form/create)
-            .state('form.create', {
+            .state('create', {
                 url: '/create',
-                templateUrl: 'form-create.html'
+                templateUrl: 'show.html',
+                controller: 'showCtrl'
             })
-
-            // url will be /form/show
-            .state('form.show', {
+            .state('show', {
                 url: '/show',
-                templateUrl: 'form-show.html'
+                templateUrl: 'show.html'
             })
 
         // catch all route
         // send users to the form page
-        $urlRouterProvider.otherwise('/form/create');
-    })
+        $urlRouterProvider.otherwise('/index');
+});
 
-    .controller('formController', function($scope, $http) {
+owieApp.controller('indexCtrl', function($scope, $state, Data) {
+    $scope.data = Data;
+    var msgId = Data.message + Data.date;
+    Data.msgId = msgId;
 
-        // we will store all of our form data in this object
-        $scope.formData = {};
+    $scope.processForm = function() {
+        alert('awesome: '+msgId);
+        $state.transitionTo('show');
+    };
 
-        $scope.processMessage = function($scope, $http) {
-            $http.post('message/create')
-                .success(function (data, status, headers, config) {
-                    console.log('controller successfully called')
-                }).error(function (data, status, headers, config) {
-                    console.log('controller call with errors')
-                });
-        }
+});
 
+owieApp.controller('process', function($scope, Data) {
+    alert('works');
+})
 
-        $scope.data = {message: "your message", datetime: "your date"};
-
-
-    })
-
-    .controller('FirstPage', function($scope) {
-        $scope.data = {message: "your message", datetime: "your date"};
-    });
+owieApp.controller('showCtrl', function($scope, Data) {
+    var msgId = Data.message + Data.date;
+    Data.msgId = msgId;
+    console.log(msgId);
+    $scope.data = Data;
+    //$state.go('show')
+});
