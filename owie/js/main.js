@@ -4,8 +4,7 @@ var owieApp = angular.module('owieApp', ['ui.router', 'ngResource']);
 owieApp.factory('Data', function() {
   return {
     message: "one-click-message",
-    date: "31.12.2014",
-    msgId: "messagetestdate"
+    date: "31.12.2014"
   };
 });
 
@@ -38,17 +37,14 @@ owieApp.config(function($stateProvider, $urlRouterProvider) {
 
 // index controller
 owieApp.controller('indexCtrl', function($scope, $state, Message, Data) {
-  var msgId = Data.message + Data.date;
-  Data.msgId = msgId;
   $scope.data = Data;
 
-  console.log('controller=indexCtrl msgId=' + msgId);
+  console.log('controller=indexCtrl');
 
   $scope.processForm = function() {
     console.log('controller=indexCtrl function=processForm');
-    var msgId = Data.message + Data.date;
 
-    // create a new Resource
+    // create a new Message resource
     $scope.message = new Message();
     $scope.message.data = Data;
     console.log($scope.message);
@@ -61,8 +57,6 @@ owieApp.controller('indexCtrl', function($scope, $state, Message, Data) {
         id: d.id
       });
     })
-
-
   };
 });
 
@@ -73,7 +67,6 @@ owieApp.controller('showCtrl', function($scope, Data, Message,
     id: $stateParams.id
   }, function() {
     console.log('controller=showCtrl message=' + message);
-    Data.msgId = $stateParams.id;
     Data.message = message.message;
     Data.date = message.date;
     $scope.data = Data;
