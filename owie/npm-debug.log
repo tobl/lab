@@ -1,21 +1,84 @@
 0 info it worked if it ends with ok
-1 verbose cli [ 'node', '/usr/local/bin/npm', 'install' ]
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', '--save', 'bodyParser' ]
 2 info using npm@1.4.28
 3 info using node@v0.10.33
-4 error install Couldn't read dependencies
-5 error Failed to parse json
-5 error Unexpected string
-6 error File: /Users/mathu/git/lab/owie/package.json
-7 error Failed to parse package.json data.
-7 error package.json must be actual JSON, not just JavaScript.
-7 error
-7 error This is not a bug in npm.
-7 error Tell the package author to fix their package.json file. JSON.parse
-8 error System Darwin 13.4.0
-9 error command "node" "/usr/local/bin/npm" "install"
-10 error cwd /Users/mathu/git/lab/owie
-11 error node -v v0.10.33
-12 error npm -v 1.4.28
-13 error file /Users/mathu/git/lab/owie/package.json
-14 error code EJSONPARSE
-15 verbose exit [ 1, true ]
+4 verbose readDependencies using package.json deps
+5 verbose cache add [ 'bodyParser', null ]
+6 verbose cache add name=undefined spec="bodyParser" args=["bodyParser",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: 'bodyParser',
+7 verbose parsed url   path: 'bodyParser',
+7 verbose parsed url   href: 'bodyParser' }
+8 silly lockFile caa4c3c7-bodyParser bodyParser
+9 verbose lock bodyParser /Users/mathu/.npm/caa4c3c7-bodyParser.lock
+10 silly lockFile caa4c3c7-bodyParser bodyParser
+11 silly lockFile caa4c3c7-bodyParser bodyParser
+12 verbose addNamed [ 'bodyParser', '' ]
+13 verbose addNamed [ null, '*' ]
+14 silly lockFile e0b6bd45-bodyParser bodyParser@
+15 verbose lock bodyParser@ /Users/mathu/.npm/e0b6bd45-bodyParser.lock
+16 silly addNameRange { name: 'bodyParser', range: '*', hasData: false }
+17 verbose request where is /bodyParser
+18 verbose request registry https://registry.npmjs.org/
+19 verbose request id 3d1ee94e00701e5c
+20 verbose url raw /bodyParser
+21 verbose url resolving [ 'https://registry.npmjs.org/', './bodyParser' ]
+22 verbose url resolved https://registry.npmjs.org/bodyParser
+23 verbose request where is https://registry.npmjs.org/bodyParser
+24 info trying registry request attempt 1 at 16:40:11
+25 http GET https://registry.npmjs.org/bodyParser
+26 http 404 https://registry.npmjs.org/bodyParser
+27 verbose headers { date: 'Sat, 22 Nov 2014 15:40:12 GMT',
+27 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+27 verbose headers   'content-type': 'application/json',
+27 verbose headers   'cache-control': 'max-age=0',
+27 verbose headers   'content-length': '52',
+27 verbose headers   'accept-ranges': 'bytes',
+27 verbose headers   via: '1.1 varnish',
+27 verbose headers   age: '0',
+27 verbose headers   'x-served-by': 'cache-fra1224-FRA',
+27 verbose headers   'x-cache': 'MISS',
+27 verbose headers   'x-cache-hits': '0',
+27 verbose headers   'x-timer': 'S1416670812.260182,VS0,VE710',
+27 verbose headers   'keep-alive': 'timeout=10, max=50',
+27 verbose headers   connection: 'Keep-Alive' }
+28 silly registry.get cb [ 404,
+28 silly registry.get   { date: 'Sat, 22 Nov 2014 15:40:12 GMT',
+28 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+28 silly registry.get     'content-type': 'application/json',
+28 silly registry.get     'cache-control': 'max-age=0',
+28 silly registry.get     'content-length': '52',
+28 silly registry.get     'accept-ranges': 'bytes',
+28 silly registry.get     via: '1.1 varnish',
+28 silly registry.get     age: '0',
+28 silly registry.get     'x-served-by': 'cache-fra1224-FRA',
+28 silly registry.get     'x-cache': 'MISS',
+28 silly registry.get     'x-cache-hits': '0',
+28 silly registry.get     'x-timer': 'S1416670812.260182,VS0,VE710',
+28 silly registry.get     'keep-alive': 'timeout=10, max=50',
+28 silly registry.get     connection: 'Keep-Alive' } ]
+29 silly lockFile e0b6bd45-bodyParser bodyParser@
+30 silly lockFile e0b6bd45-bodyParser bodyParser@
+31 error 404 404 Not Found: bodyParser
+31 error 404
+31 error 404 'bodyParser' is not in the npm registry.
+31 error 404 You should bug the author to publish it
+31 error 404 It was specified as a dependency of 'owie'
+31 error 404
+31 error 404 Note that you can also install from a
+31 error 404 tarball, folder, or http url, or git url.
+32 error System Darwin 13.4.0
+33 error command "node" "/usr/local/bin/npm" "install" "--save" "bodyParser"
+34 error cwd /Users/mathu/git/lab/owie
+35 error node -v v0.10.33
+36 error npm -v 1.4.28
+37 error code E404
+38 verbose exit [ 1, true ]
